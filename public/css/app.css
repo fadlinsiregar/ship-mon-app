@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
+
+:root {
+    --primary-color: #1F4172;
+    --body-color: #EEEEEE;
+    --text-color: #272829;
+    --white: #F9F9F9;
+    --padding: 8px;
+}
+
+body {
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    background-color: var(--body-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Login Page Settings */
+#login-page {
+    background-color: var(--white);
+    border-radius: 10px;
+}
+
+#login-page #login-form .btn-custom-primary {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+/* Navbar Settings */
+#navigation-menu-sidebar {
+    border-right: 2px solid #d9d9d9;
+}
+
+ul.nav-pills {
+   background-color: var(--white);
+}
+
+ul.nav-pills li.nav-item a.nav-link {
+    color: var(--primary-color);
+    padding: 15px 10px;
+    font-size: 18px;
+}
+
+ul.nav-pills li.nav-item a.nav-link.active {
+    background-color: var(--primary-color);
+    color: var(--white);
+}
+
+a.btn.btn-custom-schedule {
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 10px;
+    background-color: #F9F9F9;
+    filter: drop-shadow(4px 4px 8px rgba(30, 30, 30, 0.25));
+}
+
+a.btn.btn-custom-schedule:focus {
+    border: none;
+}
+
+a.btn.btn-custom-schedule:nth-child(3) {
+    background-color: #dc3545;
+    color: #F9F9F9;
+}
