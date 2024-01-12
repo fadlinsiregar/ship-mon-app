@@ -61,7 +61,7 @@ a.btn.btn-custom-schedule:focus {
     border: none;
 }
 
-a.btn.btn-custom-schedule:nth-child(3) {
+a.btn.btn-custom-schedule#delete-button {
     background-color: #dc3545;
     color: #F9F9F9;
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Schedule;
-use App\Models\ShipType;
 use App\Models\WorkSchedule;
 use App\Models\WorkStage;
 use Carbon\Carbon;
@@ -44,7 +43,6 @@ class ScheduleController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'ship_type' => 'required',
             'working_hours' => 'numeric',
             'start_date' => 'required|date',
             'completion_date' => 'required|date'
@@ -52,14 +50,13 @@ class ScheduleController extends Controller
 
         $schedule = Schedule::create([
             'name' => $request->name,
-            'ship_type_id' => $request->ship_type,
             'working_hours' => $request->working_hours,
             'start_date' => $request->start_date,
             'completion_date' => $request->completion_date
         ]);
 
         return $schedule->exists
-            ? redirect()->route('schedules.details', ['id' => $schedule->id])
+            ? redirect()->route('schedules.details', ['id' => $schedule->id])->with('message', 'Berhasil menambahkan jadwal baru!')
             : redirect()->back()->with('message', 'Gagal menambahkan data!');
     }
 
@@ -77,7 +74,7 @@ class ScheduleController extends Controller
         } else {
             $startDate = Carbon::parse($latestWorkSchedule->completion_date)->addDay()->format('Y-m-d');
         }
-        
+
         $completionDate = Carbon::parse($startDate)->addWeekdays($request->days)->format('Y-m-d');
 
         $workSchedule = WorkSchedule::create([

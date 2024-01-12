@@ -13,7 +13,6 @@
                     <div class="row">
                         <div class="col-6">
                             <p>Nama Pembangunan</p>
-                            <p>Jenis Kapal</p>
                             <p>Jam Pengerjaan / hari</p>
                             <p>Waktu Pengerjaan</p>
                         </div>
@@ -98,7 +97,7 @@
                                 </div>
                                 <div class="form-group mt-2">
                                     <label for="days">Jumlah Hari Kerja</label>
-                                    <input type="number" name="days" id="days" min="0" class="form-control" required>
+                                    <input type="number" name="days" id="days" min="0" class="form-control" required autofocus>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -110,7 +109,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="mt-2">
             <h4>Gantt Chart Pembangunan</h4>
             <canvas id="ganttChart"></canvas>
@@ -187,7 +186,7 @@
                             unit: 'week'
                         },
                         min: '{{ $schedule->start_date }}',
-                        max: '{{ $schedule->completion_date }}',
+                        // max: '{{ $schedule->completion_date }}',
                         grid: {
                             borderDash: [5, 5]
                         }
@@ -275,7 +274,6 @@
                             unit: 'week',
                         },
                         min: '{{ $schedule->start_date }}',
-                        max: '{{ $schedule->completion_date }}',
                         title: {
                             display: true,
                             text: 'Waktu Pembangunan'
@@ -361,5 +359,10 @@
 
         document.getElementById('print-out').addEventListener('click', printToPdf);
     </script>
+    @if (session('message'))
+        <script>
+            alert("{{ session('message') }}");
+        </script>
+    @endif
 @endsection
 @endsection

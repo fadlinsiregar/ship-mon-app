@@ -12,7 +12,7 @@
                 <i class="bi bi-exclamation-triangle"></i> {{ session('message') }}
             </div>
         @endif
-        <section id="schedules" class="">
+        <section id="schedules">
             <button href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addConstructionModal">Tambah
                 Pembangunan Kapal
             </button>
@@ -28,9 +28,9 @@
                             <a href="{{ route('schedules.details', ['id' => $schedule->id]) }}"
                                 class="btn btn-custom-schedule btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 data-bs-title="Rincian"><i class="bi bi-info-lg"></i></a>
-                            <a href="#" class="btn btn-custom-schedule btn-lg" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Ubah"><i class="bi bi-pencil-square"></i></a>
-                            <a href="#" class="btn btn-custom-schedule btn-lg" data-bs-toggle="tooltip"
+                            {{-- <a href="#" class="btn btn-custom-schedule btn-lg" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom" data-bs-title="Ubah"><i class="bi bi-pencil-square"></i></a> --}}
+                            <a href="#" class="btn btn-custom-schedule btn-lg" id="delete-button" data-bs-toggle="tooltip"
                                 data-bs-placement="bottom" data-bs-title="Hapus Jadwal"><i class="bi bi-trash"></i></a>
                         </div>
                     </div>
@@ -59,7 +59,7 @@
                             <div class="row form-group mt-2">
                                 <div class="col">
                                     <label for="start_date">Tanggal Mulai</label>
-                                    <input type="date" name="start_date" id="start_date" class="form-control">
+                                    <input type="date" name="start_date" id="start_date" class="form-control" value="{{ now()->format('Y-m-d') }}">
                                 </div>
                                 <div class="col">
                                     <label for="completion_date">Tanggal Selesai</label>
@@ -69,7 +69,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-                            <button type="submit" class="btn btn-primary">Tambah</button>
+                            <button type="submit" class="btn btn-primary" name="submit">Tambah</button>
                         </div>
                     </form>
                 </div>
