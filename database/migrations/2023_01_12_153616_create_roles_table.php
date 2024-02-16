@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateWorkStagesTable extends Migration
+class CreateRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateWorkStagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_stages', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->enum('name', ['Project Manager', 'Pekerja Lapangan']);
         });
     }
 
@@ -26,6 +26,6 @@ class CreateWorkStagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('work_stages');
+        Schema::dropIfExists('roles');
     }
 }

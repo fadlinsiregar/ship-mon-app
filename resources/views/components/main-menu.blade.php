@@ -11,20 +11,35 @@
                     <i class="bi bi-house"></i> Beranda
                 </a>
             </li>
+            @if (Auth::user()->role_id != 2)
             <li class="nav-item mt-3">
                 <a href="{{ route('schedules.index') }}" class="nav-link {{ activeRoute('schedules') }}"
                     aria-current="page">
                     <i class="bi bi-calendar"></i> Jadwal
                 </a>
-                @if (request()->is('schedules/*'))
-                    <nav class="nav nav-pills flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link ms-3 my-2 {{ activeRoute('schedules/*/details') }}" href="{{ route('schedules.details', $schedule->id) }}"><i class="bi bi-info-circle-fill"></i> Rincian</a>
-                        </li>
-                    </nav>
-                @endif
             </li>
+            @endif
+            @if (request()->is('schedules/*'))
+                <li class="nav-item">
+                    <a class="nav-link mt-3 {{ activeRoute('schedules/*/details') }}" href="{{ route('schedules.details', $schedule->id) }}"><i class="bi bi-info-circle-fill"></i> Rincian</a>
+                </li>
+                @if (Auth::user()->role_id != 2)
+                <li class="nav-item">
+                    <a class="nav-link mt-3 {{ activeRoute('schedules/*/workers') }}" href="{{ route('schedules.workers', $schedule->id) }}"><i class="bi bi-person-lines-fill"></i> Tim Pekerja</a>
+                </li>
+                @endif
+            @endif
         </ul>
+        <div class="dropdown">
+            <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ Auth::user()->full_name ?? ""; }}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                <li><a class="dropdown-item" href="#">Profil</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="/logout">Keluar</a></li>
+            </ul>
+        </div>
     </nav>
-
+    <hr>
 </div>

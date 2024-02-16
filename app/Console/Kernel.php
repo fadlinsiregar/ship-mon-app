@@ -20,9 +20,6 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             WorkSchedule::where('start_date', Carbon::now()->format('Y-m-d'))
                 ->update(['status' => 'in progress']);
-
-                
-            WorkSchedule::where('completion_date', '<', Carbon::now()->format('Y-m-d'));
         })->everyMinute();
     }
 

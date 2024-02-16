@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class WorkStage extends Model
 {
-    public $timestamps = false; 
+    public $timestamps = false;
 
-    protected $fillable = ['work_stage'];
+    protected $fillable = ['name'];
 
     public function workSchedules() {
         return $this->hasMany(WorkSchedule::class);

@@ -2,35 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Schedule;
+use App\Models\User;
 
 class UserController extends Controller
 {
     public function __construct() {
-        
+        $this->middleware(['auth', 'user']);
     }
 
     public function index() {
-        return view('dashboard.index');
+        $schedules = Schedule::join('schedule_workers', 'schedule_workers.schedule_id', '=', 'schedules.id')
+        ->join('users', 'users.id', '=', 'schedules.user_id')
+        ->where('schedule_workers.worker_id', $this->getUserId())
+        ->select('schedules.id', 'schedules.name', 'users.full_name')
+        ->get();
+
+        return view('index')->with([
+            'title' => 'Dashboard',
+            'schedules' => $schedules,
+        ]);
     }
 
-    public function showLogin() {
-        return view('auth.login');
-    }
-
-    public function showRegister() {
-        return view('auth.register');
-    }
-
-    public function login(Request $request) {
-        
-    }
-
-    public function register(Request $request) {
+    public function profile() {
+        $user = User::find($this->getUserId());
         return true;
     }
 
-    public function logout() {
-        return true;
+    private function getUserId() {
+        return auth()->user()->id;
     }
 }

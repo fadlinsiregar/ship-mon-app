@@ -21,14 +21,6 @@ class WorkSchedule extends Model
         return $query->orderBy('completion_date', 'desc');
     }
 
-    public function scopeScheduled($query) {
-        return $query->where('status', 'scheduled');
-    }
-
-    public function scopeInProgress($query) {
-        return $query->where('status', 'in progress');
-    }
-
     public function scopeCompleted($query) {
         return $query->where('status', 'completed');
     }

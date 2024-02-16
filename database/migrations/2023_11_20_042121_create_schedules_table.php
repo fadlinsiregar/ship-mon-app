@@ -19,6 +19,8 @@ class CreateSchedulesTable extends Migration
             $table->integer('working_hours');
             $table->date('start_date');
             $table->date('completion_date');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

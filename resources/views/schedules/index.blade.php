@@ -1,11 +1,8 @@
 @extends('app')
-
-@section('title', 'Jadwal')
-
 @section('main')
     @extends('components.main-menu')
 @section('content')
-    <section class="container mt-3">
+    <section class="container">
         <h1>Jadwal Pembangunan</h1>
         @if(session('message'))
             <div class="alert alert-danger">
@@ -28,10 +25,6 @@
                             <a href="{{ route('schedules.details', ['id' => $schedule->id]) }}"
                                 class="btn btn-custom-schedule btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
                                 data-bs-title="Rincian"><i class="bi bi-info-lg"></i></a>
-                            {{-- <a href="#" class="btn btn-custom-schedule btn-lg" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Ubah"><i class="bi bi-pencil-square"></i></a> --}}
-                            <a href="#" class="btn btn-custom-schedule btn-lg" id="delete-button" data-bs-toggle="tooltip"
-                                data-bs-placement="bottom" data-bs-title="Hapus Jadwal"><i class="bi bi-trash"></i></a>
                         </div>
                     </div>
                 @endforeach
